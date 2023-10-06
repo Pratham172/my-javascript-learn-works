@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="demo"></p>
+  <script>
+    let firstName, lastName, price, discount, fullPrice;
+
+    firstName = "pratham";
+    lastName = "kulal";
+    price = 500;
+    discount = 0.10;
+
+    fullPrice = price - discount;
+
+    let text = " ";
+    const ele = document.getElementById;
+    const myobj = {
+      name: "pratham",
+      class:"BCA",
+      cars: [
+        {name:"bmw", model:["x1","x2","x3"]},
+        {name:"bugati", model:["chiron","chiron2","chironx5"]},
+        {name:"lamborgini", model:["lambo1","minilambo","biglambo"]},
+      ]
+    };
+    for(let i in myobj.cars){
+      text +="<h2>" + myobj.cars[i].name +"</h2>";
+      for(let j in myobj.cars[i].model){
+        text +="<br>"+ myobj.cars[i].model[j] +"<br>";
+     
+      }
+    }
+    document.getElementById("demo").innerHTML = text;
+    ele("demo").innerHTML = text;
+  </script>
+</body>
+</html>

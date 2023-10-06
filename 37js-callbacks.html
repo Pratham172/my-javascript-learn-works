@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="demo"></p>
+  <p id="demo2"></p>
+
+  <script>
+    function mydisplay(some){
+      document.getElementById("demo").innerHTML = some;
+    }
+    function calculate(num1,num2){
+      let result = num1 + num2;
+      mydisplay(result);
+    }
+    function mySecond(){
+      mydisplay("dhanni");
+    }
+    calculate(55,77)
+    // let result = calculate(5.2,5.3);
+    // mydisplay(result);
+
+    function myDisplayer(something){
+      document.getElementById("demo2").innerHTML = something;
+    }
+    function sum(n1,n2,myCallback){
+      sum = n1 + n2;
+      myCallback(sum);
+      
+    }
+    sum(45,5,myDisplayer);
+
+  </script>
+</body>
+</html>

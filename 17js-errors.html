@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <input id="input" type="text">
+    <button onclick="myFunction()">Test Input</button>
+    <p id="demo1"></p>
+
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+    <script>
+        try{
+            aldert("hello");
+        }
+        catch(err){
+            document.getElementById("demo").innerHTML = err.message;
+        }
+
+        function myFunction(){
+            const message = document.getElementById("demo1");
+            message.innerHTML = "";
+            let x = document.getElementById("input").value;
+
+            try{
+                if(x.trim()== "")throw "empty";
+                if(isNaN(x)) throw "not a number";
+                x = Number(x);
+                if(x < 5) throw " too low";
+                if(x > 10) throw " too high";
+            }
+            catch(err){
+                message.innerHTML = "input is " + err;
+            }
+            finally{
+                document.getElementById("input").value= "";
+            }
+        }
+
+        let num = 1;
+        try{
+            num.toPrecision(200);
+        }
+        catch(err){
+            document.getElementById("demo2").innerHTML =  err.name;
+        }
+
+        let x = 5;
+        try{
+            x = y +3;
+        }
+        catch(err){
+            document.getElementById("demo3").innerHTML = err.name;
+        }
+
+        try{
+            decodeURI("%%%");
+
+        }
+        catch(err){
+            document.getElementById("demo3").innerHTML = err.name;
+        }
+    </script>
+</body>
+</html>

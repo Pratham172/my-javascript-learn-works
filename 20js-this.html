@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    
+    <button onclick="this.style.color='red'">hello</button>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <script>
+        "use strict";
+        const person = {
+            firstname:"pratham",
+            lastname:"kulal",
+            id: 23,
+            fullName:function(){
+                return this.firstname + " " + this.lastname;
+            }
+        };
+        document.getElementById("demo").innerHTML = person.fullName();
+        function aku(){
+            return this;
+        }
+        document.getElementById("demo1").innerHTML = aku();
+
+       const person1 = {
+            fullName:function(){
+                return this.firstName + " " + this.lastName;
+            }
+        };
+       const person2 = {
+            firstName: "prathu",
+            lastName: "kulal"
+        };
+        let x = person1.fullName.call(person2);
+        document.getElementById("demo3").innerHTML = x;
+
+        const person3 = {
+            firstName: "pathu",
+            lastName: "kulal",
+            fullName: function(){
+                return this.firstName + " " + this.lastName;
+            }
+        };
+        const member = {
+            firstName: "kingprathu",
+            lastName: "kulal"
+        };
+        let y = person3.fullName.bind(member);
+        document.getElementById("demo4").innerHTML = y();
+        
+
+    </script>
+</body>
+</html>

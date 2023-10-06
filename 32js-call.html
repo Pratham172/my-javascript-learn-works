@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="demo"></p>
+
+  <script>
+    "use strict";
+    const person = {
+      fullName:function(city , village){
+        return this.firstName+" "+this.lastName+ " in "+city+" city and "+village+" village";
+      }
+    };
+    const person2 = {
+      firstName:"pratham",
+      lastName:"kulal"
+    };
+    const person3 = {
+      firstName:"dhanni",
+      lastName:"kulal"
+    };
+
+    document.getElementById("demo").innerHTML = person.fullName.call(person2,"manglore", "kairangala");
+  </script>
+</body>
+</html>

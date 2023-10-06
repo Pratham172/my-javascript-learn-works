@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="demo"></p>
+
+  <script>
+    class person{
+      constructor(name){
+        this.name = name;
+      }
+      static hello(){
+        return "hello bye";
+      }
+    }
+
+    const p = new person("pratham");
+    // in static method-- you can call the method using only the class name person  
+    document.getElementById("demo").innerHTML = person.hello();
+  </script>
+</body>
+</html>

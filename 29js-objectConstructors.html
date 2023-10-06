@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="demo"></p>
+  <p id="demo1"></p>
+  <p id="demo2"></p>
+
+  <script>
+    function Person(first,last,age){
+      this.firstName = first;
+      this.lastName = last;
+      this.age = age;
+      this.totalIntro = function(){
+        return this.firstName+" "+ this.lastName+" is "+this.age+" years old and nationality "+ this.nationality;
+      }
+    }
+    Person.prototype.nationality = "india";
+    Person.prototype.name1 = function(){
+      return this.firstName+" "+ this.lastName
+    }
+
+    const myMother = new Person("dayavathi","kulal",44);
+    const myFather = new Person("Narayana","Moolya",50);
+    document.getElementById("demo").innerHTML = myMother.firstName+ " "+myMother.lastName +" is "+myMother.age+" years old"; 
+    document.getElementById("demo1").innerHTML = myFather.totalIntro();
+    
+    document.getElementById("demo2").innerHTML = myMother.name1();
+  </script>
+</body>
+</html>

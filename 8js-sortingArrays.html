@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<p id="demo"></p>
+<p id="demo1"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+<p id="demo4"></p>
+<button onclick="setRandom();">random array generator</button>
+<p id="demo5"></p>
+<button onclick="myFunction();">click</button>
+<p id="demo6"></p>
+<p id="demo7"></p>
+<p id="demo8"></p>
+<p id="demo9"></p>
+<button onclick="strSort();">string sort</button>
+<p id="demo10"></p>
+<p id="demo11"></p>
+    <script>
+        const fruits = ["mango","bannana","watermelon","papaya","chitupuli"];
+        const num = [12,3,4,5,2,7];
+        document.getElementById("demo").innerHTML = fruits;
+
+        fruits.sort();
+        document.getElementById("demo1").innerHTML = fruits;
+
+        num.sort();
+        document.getElementById("demo2").innerHTML = num;
+
+        num.reverse();
+        document.getElementById("demo3").innerHTML = num;
+
+        num.sort(function(a,b){return a - b});
+        document.getElementById("demo4").innerHTML = num;
+        
+        num.sort(function(a,b){return a - b});
+        document.getElementById("demo7").innerHTML = num[0];
+
+        function setRandom(){
+        num.sort(function(){return 0.5 - Math.random();});
+        document.getElementById("demo5").innerHTML = num;
+        }
+
+        function myFunction(){
+            for(let i=0;i<num.length-1;i++){
+                let j = Math.floor(Math.random() * (i+1));
+                let k = num[i];
+                num[i] = num[j];
+                num[j] = k;
+            }
+            document.getElementById("demo6").innerHTML= num;
+        }
+        const points = [22,33,2,3,5];
+        document.getElementById("demo8").innerHTML = maxValue(points); ;
+        
+        function maxValue(arr){
+            return Math.max.apply(null,arr);
+        }
+
+        document.getElementById("demo9").innerHTML = maxValue(points); ;
+        
+        function maxValue(arr){
+            return Math.min.apply(null,arr);
+        }
+
+        const cars = [
+            {type:"volvo",year:2016},
+            {type:"saab",year:2010},
+            {type:"Bmw",year:2012}
+        ];
+        displayCars();
+
+        // cars.sort(function(a,b){return a.year - b.year});
+        // displayCars();
+
+     
+        function strSort(){
+        cars.sort(function(a,b){
+            let x = a.type.toLowerCase();
+            let Y = b.type.toLowerCase();
+            if(x<y){return -1;};
+            if(x>y){return 1;};
+            return 0;
+        });
+        displayCars();
+    }
+
+    function displayCars(){
+            document.getElementById("demo10").innerHTML = 
+            cars[0].type +" "+ cars[0].year +"<br>"+
+            cars[1].type +" "+ cars[1].year +"<br>"+
+            cars[2].type +" "+ cars[2].year +"<br>";
+        }
+
+        
+    </script>
+</body>
+</html>

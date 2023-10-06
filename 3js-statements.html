@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>js statements</h2>
+
+    <p id="demo"></p>
+
+    <h2>re declaring variable using let</h2>
+    <p id="demo2"></p>
+    
+    <h2>javacript const</h2>
+    <p id="demo3"></p>
+    <script>
+        let x, y, z;
+        x = 5;
+        y = 6;
+        z = x + 6;
+        document.getElementById("demo").innerHTML = z ;
+
+       /* let n = 10;
+        // here n is 10
+        {
+            let n = 2;
+            //here n is 2\
+            console.log(n)
+        }
+        // here n is 10
+        document.getElementById("demo2").innerHTML = n;
+
+        try{
+            const pi = 3.14;
+             pi = 2;
+
+        }
+        catch(err){
+            document.getElementById("demo3").innerHTML = err ;
+                }
+
+                const num;
+                num = 2;
+                console.log(num);*/
+                
+                const car = ["supra", "bugati","maclaren"];
+                car[0] = "toyota";
+                 car.push("mercedes");
+               document.getElementById("demo2").innerHTML = car;
+
+                const cars = {
+                    type:"spota",
+                    model:"er2",
+                    color:"blue",
+                    car:"supra"
+                };
+                cars.color = "red";
+                cars.owner = "prathu"
+                document.getElementById("demo3").innerHTML = cars.owner;
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documegnt</title>
+</head>
+<body>
+    <p id="demo"></p>
+
+    <script>
+        let num;
+        for(let i=0; i<10;i++){
+            num = i;
+        console.log(num);
+
+        }
+        document.getElementById("demo").innerHTML= num;
+
+        const person = {fname:"pratham",lname:"kulal",age:21};
+        let txt = " ";
+        for(let x in person){
+            txt += person[x] + " ";
+        }
+        console.log(txt);
+        for(let x in person){
+            console.log(person[x]);
+        }
+
+        const arr = ["hello","hii","how are you"];
+        let ex = " ";
+        for(let i in arr){
+            ex += arr[i] + " ";
+        }
+        console.log(ex);
+
+        const cars = [ 'bmw','benz','hello'];
+        for(let x of cars){
+            console.log(x);
+
+        }
+
+        const name = "w3schools";
+        for(const x of name){
+            console.log(x);
+        }
+
+
+    </script>
+</body>
+</html>

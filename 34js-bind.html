@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="demo"></p>
+  <p id="demo2"></p>
+  <button onclick="myFunction();">click to count</button>
+  <script>
+    "use strict";
+    const person = {
+  firstName:"John",
+  lastName: "Doe",
+  display: function() {
+    let x = document.getElementById("demo");
+    x.innerHTML = this.firstName + " " + this.lastName;
+  }
+}
+let display = person.display.bind(person);
+setTimeout(display, 3000);
+
+// function closures
+const add =(function () {
+  let counter = 0;
+  return function () { counter += 1; return counter; }
+})();
+
+function myFunction () {
+  document.getElementById("demo2").innerHTML = add();
+}
+  </script>
+</body>
+</html>

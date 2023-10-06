@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+    <p id="demo6"></p>
+    <p id="demo7"></p>
+    <p id="demo8"></p>
+    <p id="demo9"></p>
+    <script>
+        f = ["banana","mango","orange","hello","uppendra"];
+        ge = ["email","whatsapp","facebook"];
+        document.getElementById("demo").innerHTML = f.toString();
+        document.getElementById("demo2").innerHTML = f.join(" fruit ");
+        f.pop();
+        document.getElementById("demo3").innerHTML = f; 
+        f.shift();
+        document.getElementById("demo4").innerHTML = f; 
+        f.unshift("lemon");
+        document.getElementById("demo5").innerHTML = f; 
+        console.log(typeof f.toString());
+
+       const myarr= f.concat(ge);
+        document.getElementById("demo6").innerHTML = myarr; 
+        const arr = [[1,2],[3,4],[5,6]];
+        arry = arr.flat();
+        document.getElementById("demo7").innerHTML = arry; 
+        f.splice(1,0,"batman")
+        document.getElementById("demo8").innerHTML = f;
+        const citrus = f.slice(1,5); 
+        document.getElementById("demo9").innerHTML = citrus; 
+
+
+
+    </script>
+</body>
+</html>

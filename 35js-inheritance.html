@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="demo"></p>
+  <p id="demo1"></p>
+
+  <script>
+    class Car{
+      constructor(name,brand){
+        this.name = name;
+        this.brand = brand;
+      }
+      model(){
+        return this.name+" is ambani model";
+      }
+
+    }
+    class Game extends Car {
+      constructor(name,brand,age) {
+        super(name,brand)
+        this.age = age;
+      }
+      display (){
+        return this.model() + " and brand is "+ this.brand + " and its age is " + this.age;
+      }
+    }
+
+    const obj = new Game("bugatti","chiron",2015);
+    document.getElementById("demo").innerHTML = obj.display();
+    
+    // getters and setters in class
+
+    class Person{
+      constructor(name){
+        this.name = name;
+      }
+      get cname(){
+        return this.name;
+      }
+      set cname(x){
+        this.name = x;
+      }
+    }
+    const p = new Person("pratham");
+    p.name("kulal");
+    document.getElementById("demo1").innerHTML = p.name;
+  </script>
+</body>
+</html>

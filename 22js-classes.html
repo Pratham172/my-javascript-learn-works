@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo2"></p>
+    <script>
+        "use strict";
+        class car{
+            constructor(name,year){
+                this.name =  name;
+                this.year = year;
+            }
+        }
+
+        const mycar1 = new car("bugatti",2022);
+        const mycar2 = new car("bmw",2003);
+        document.getElementById("demo").
+        innerHTML = mycar1.name + " " + mycar2.name;
+
+        //total age finder
+        class person{
+            constructor(name,month,year){
+                this.name = name;
+                this.month = month;
+                this.year = year;
+            }
+            totalAge(){
+                const date = new Date();
+                
+                const age = date.getFullYear() - this.year;
+                let mon = date.getMonth();
+                if(mon >= this.month){
+                    return age;
+                }
+                else{
+                    return age - 1;
+                }
+            }
+        }
+        const p = new person("dayavathi",5,1979);
+        document.getElementById("demo2").innerHTML
+         = `My name is ${p.name} and iam ${p.totalAge()} years old`;
+        
+         
+    </script>
+</body>
+</html>

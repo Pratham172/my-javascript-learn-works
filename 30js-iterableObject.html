@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="demo"></p>
+
+  <script>
+    function myNumbers(){
+      let n = 0;
+      return{
+        next: function(){
+          n += 10;
+          return {value:n , done: false};
+        }
+      };
+    }
+    const n = myNumbers();
+    n.next();
+    n.next();
+    n.next();
+    document.getElementById("demo").innerHTML = n.next().value;
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <button onclick="myfunction();">add another element</button>
+    
+    <script>
+        const fruits = ["mango","banana", "orange"];
+        document.getElementById("demo").innerHTML = fruits.length;
+        let lastFruit = fruits[fruits.length-1];
+        console.log(lastFruit);
+
+        let text = "<ul>";
+            // for(let i=0; i<fruits.length;i++){
+            //     text += "<li>"+fruits[i]+"</li>";
+            // }
+            // text += "</ul>";
+            // document.getElementById("demo2").innerHTML = text;
+
+            // using for each
+
+            fruits.forEach(function(value){
+                text += "<li>"+value+"</li>";
+            });
+            text += "</ul>";
+            document.getElementById("demo3").innerHTML = text;
+
+            function myfunction(){
+                fruits.push("watermelon");
+            document.getElementById("demo3").innerHTML = fruits;
+                
+            }
+            fruits["jj"] ="gund"
+            console.log(Array.isArray( fruits["jj"]));
+
+            const gg = [ 1,2,4];
+            console.log(Array.isArray( gg));
+    </script>
+</body>
+</html>

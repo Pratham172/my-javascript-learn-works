@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+    <script>
+        const letter = new Set(["a","b","c","d"]);
+        // add values
+        letter.add("f");
+        letter.add("e");
+        document.getElementById("demo").innerHTML = letter.size;
+
+        const num = new Set();
+        const a = "a";
+        const b = "b";
+        const c = "c";
+
+        // add variables to set
+        num.add(a);
+        num.add(b);
+        num.add(c);
+        document.getElementById("demo1").innerHTML = num.size;
+
+        letter.forEach(function(value){
+            console.log(value);
+        });
+    document.getElementById("demo2").innerHTML= num.values();
+        let val = "";
+    for(let x of num.values()){
+        val += x + " ";
+    }
+    document.getElementById("demo3").innerHTML = val;
+
+    for(let x in letter){
+        console.log(letter[x]);
+    }
+    
+</script>
+</body>
+</html>
