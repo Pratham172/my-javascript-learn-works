@@ -1,3 +1,5 @@
+'code
+
 Sub PasteAndSplitAddressHyperlink()
     Dim ws As Worksheet
     Dim clipboardData As String
