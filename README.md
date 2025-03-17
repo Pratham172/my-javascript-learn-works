@@ -5,15 +5,12 @@ Sub PasteAndSplitAddressHyperlink()
     Dim nextRow As Long
     Dim cityStateZip As String
     Dim i As Long
-    Dim hyperlinkText As String
     
     ' Set the worksheet
     Set ws = ThisWorkbook.Sheets("Sheet1") ' Change "Sheet1" to your sheet name
     
-    ' Get data from the clipboard
-    On Error Resume Next
-    clipboardData = Application.ClipboardFormats(xlClipboardFormatText)
-    On Error GoTo 0
+    ' Get data from the clipboard using DataObject
+    clipboardData = GetClipboardText()
     
     ' Check if clipboard data is valid
     If clipboardData = "" Then
@@ -21,11 +18,8 @@ Sub PasteAndSplitAddressHyperlink()
         Exit Sub
     End If
     
-    ' Extract plain text from hyperlink
-    hyperlinkText = GetPlainTextFromClipboard()
-    
-    ' Split the plain text data into lines
-    addressLines = Split(hyperlinkText, vbCrLf)
+    ' Split the clipboard data into lines
+    addressLines = Split(clipboardData, vbCrLf)
     
     ' Find the next empty row in Column N
     nextRow = ws.Cells(ws.Rows.Count, "N").End(xlUp).Row + 1
@@ -75,20 +69,11 @@ Sub PasteAndSplitAddressHyperlink()
     MsgBox "Address pasted and split successfully!", vbInformation
 End Sub
 
-Function GetPlainTextFromClipboard() As String
-    Dim html As Object
-    Dim clipboardData As String
-    
-    ' Get HTML data from the clipboard
+Function GetClipboardText() As String
+    Dim objData As Object
     On Error Resume Next
-    Set html = CreateObject("htmlfile")
-    clipboardData = html.ParentWindow.ClipboardData.GetData("text")
+    Set objData = CreateObject("New:{1C3B4210-F441-11CE-B9EA-00AA006B1A69}")
+    objData.GetFromClipboard
+    GetClipboardText = objData.GetText
     On Error GoTo 0
-    
-    ' If HTML data is not available, get plain text
-    If clipboardData = "" Then
-        clipboardData = Application.ClipboardFormats(xlClipboardFormatText)
-    End If
-    
-    GetPlainTextFromClipboard = clipboardData
 End Function
