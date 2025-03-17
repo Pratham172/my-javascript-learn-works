@@ -1,36 +1,33 @@
-'code
-
-Sub PasteAndSplitAddressHyperlink()
+Sub PasteAndSplitAddressDirectPaste()
     Dim ws As Worksheet
-    Dim clipboardData As String
-    Dim addressLines() As String
     Dim nextRow As Long
+    Dim pasteRange As Range
+    Dim addressLines() As String
     Dim cityStateZip As String
     Dim i As Long
     
     ' Set the worksheet
     Set ws = ThisWorkbook.Sheets("Sheet1") ' Change "Sheet1" to your sheet name
     
-    ' Get data from the clipboard
-    clipboardData = GetClipboardText()
+    ' Find the next empty row in Column N
+    nextRow = ws.Cells(ws.Rows.Count, "N").End(xlUp).Row + 1
     
-    ' Check if clipboard data is valid
-    If clipboardData = "" Then
-        MsgBox "No data found in the clipboard!", vbExclamation
-        Exit Sub
-    End If
+    ' Simulate a paste operation into Column N
+    ws.Cells(nextRow, "N").Select
+    ws.Paste
     
-    ' Debug: Print clipboard data
-    Debug.Print "Clipboard Data: " & clipboardData
+    ' Get the pasted data from Column N
+    Dim pastedData As String
+    pastedData = ws.Cells(nextRow, "N").Value
     
-    ' Split the clipboard data into lines
-    addressLines = Split(clipboardData, vbCrLf)
+    ' Debug: Print pasted data
+    Debug.Print "Pasted Data: " & pastedData
+    
+    ' Split the pasted data into lines
+    addressLines = Split(pastedData, vbCrLf)
     
     ' Debug: Print address lines
     Debug.Print "Address Lines: " & Join(addressLines, " | ")
-    
-    ' Find the next empty row in Column N
-    nextRow = ws.Cells(ws.Rows.Count, "N").End(xlUp).Row + 1
     
     ' Assign Name (first line)
     ws.Cells(nextRow, "N").Value = Trim(addressLines(0)) ' Name
@@ -82,13 +79,3 @@ Sub PasteAndSplitAddressHyperlink()
     
     MsgBox "Address pasted and split successfully!", vbInformation
 End Sub
-
-Function GetClipboardText() As String
-    Dim objData As Object
-    On Error Resume Next
-    ' Use Microsoft Forms 2.0 Object Library to access clipboard
-    Set objData = CreateObject("New:{1C3B4210-F441-11CE-B9EA-00AA006B1A69}")
-    objData.GetFromClipboard
-    GetClipboardText = objData.GetText
-    On Error GoTo 0
-End Function
