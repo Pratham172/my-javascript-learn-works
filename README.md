@@ -1,10 +1,3 @@
-# my-javascript-learn-works 
-<br>
-I have written javascript code inside the html while practice
-<br>
-I have not made seperate script.js file to link html
-
-excell VBA 
 Sub PasteAndSplitAddressHyperlink()
     Dim ws As Worksheet
     Dim clipboardData As String
@@ -12,6 +5,7 @@ Sub PasteAndSplitAddressHyperlink()
     Dim nextRow As Long
     Dim cityStateZip As String
     Dim i As Long
+    Dim hyperlinkText As String
     
     ' Set the worksheet
     Set ws = ThisWorkbook.Sheets("Sheet1") ' Change "Sheet1" to your sheet name
@@ -27,8 +21,11 @@ Sub PasteAndSplitAddressHyperlink()
         Exit Sub
     End If
     
-    ' Split the clipboard data into lines
-    addressLines = Split(clipboardData, vbCrLf)
+    ' Extract plain text from hyperlink
+    hyperlinkText = GetPlainTextFromClipboard()
+    
+    ' Split the plain text data into lines
+    addressLines = Split(hyperlinkText, vbCrLf)
     
     ' Find the next empty row in Column N
     nextRow = ws.Cells(ws.Rows.Count, "N").End(xlUp).Row + 1
@@ -77,3 +74,21 @@ Sub PasteAndSplitAddressHyperlink()
     
     MsgBox "Address pasted and split successfully!", vbInformation
 End Sub
+
+Function GetPlainTextFromClipboard() As String
+    Dim html As Object
+    Dim clipboardData As String
+    
+    ' Get HTML data from the clipboard
+    On Error Resume Next
+    Set html = CreateObject("htmlfile")
+    clipboardData = html.ParentWindow.ClipboardData.GetData("text")
+    On Error GoTo 0
+    
+    ' If HTML data is not available, get plain text
+    If clipboardData = "" Then
+        clipboardData = Application.ClipboardFormats(xlClipboardFormatText)
+    End If
+    
+    GetPlainTextFromClipboard = clipboardData
+End Function
