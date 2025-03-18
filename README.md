@@ -1,46 +1,49 @@
-Sub SplitCityStateZip()
+Sub SplitAndMoveAddress()
     Dim ws As Worksheet
     Dim selectedCell As Range
-    Dim cityStateZip As String
-    Dim city As String
-    Dim state As String
-    Dim zipCode As String
+    Dim addrParts As Variant
+    Dim cityPart As String
+    Dim statePart As String
+    Dim pincodePart As String
+    Dim totalParts As Integer
     
-    ' Set the worksheet
-    Set ws = ActiveSheet ' Use the active sheet
+    ' Set the active worksheet
+    Set ws = ActiveSheet
     
-    ' Get the selected cell
-    Set selectedCell = Selection
-    If selectedCell.Cells.Count > 1 Then
-        MsgBox "Please select a single cell!", vbExclamation
-        Exit Sub
+    ' Check if the user has selected a single cell in Column N
+    If Selection.Cells.Count = 1 And Selection.Column = 14 Then ' Column N = 14
+        Set selectedCell = Selection
+        
+        ' Split the address by spaces
+        addrParts = Split(selectedCell.Value, " ")
+        totalParts = UBound(addrParts) ' Zero-based index
+        
+        ' Ensure there are at least two parts (State & Pincode)
+        If totalParts >= 1 Then
+            ' Extract Pincode (last word)
+            pincodePart = Trim(addrParts(totalParts))
+            ' Extract State (second last word)
+            statePart = Trim(addrParts(totalParts - 1))
+            ' Everything left is City (joins all words before the state)
+            If totalParts > 1 Then
+                cityPart = Join(Application.Index(addrParts, 0, 0 To totalParts - 2), " ")
+            Else
+                cityPart = "N/A" ' If no city is present, mark as N/A
+            End If
+            
+            ' Move data to respective columns
+            ws.Cells(selectedCell.Row, 19).Value = cityPart  ' Column S (City)
+            ws.Cells(selectedCell.Row, 20).Value = statePart ' Column T (State)
+            ws.Cells(selectedCell.Row, 21).Value = pincodePart ' Column U (Pincode)
+            
+            ' Clear the original cell
+            selectedCell.ClearContents
+            
+            MsgBox "Address split and moved successfully!", vbInformation
+        Else
+            MsgBox "Invalid address format! Ensure it follows 'City State Pincode'.", vbExclamation
+        End If
+    Else
+        MsgBox "Please select a single address cell in Column N.", vbExclamation
     End If
-    
-    ' Get the value from the selected cell
-    cityStateZip = Trim(selectedCell.Value)
-    
-    ' Check if the cell contains valid data
-    If cityStateZip = "" Then
-        MsgBox "Selected cell is empty!", vbExclamation
-        Exit Sub
-    End If
-    
-    ' Extract Zip Code (last 5 characters)
-    zipCode = Right(cityStateZip, 5)
-    
-    ' Extract State (2 characters before the zip code)
-    state = Mid(cityStateZip, Len(cityStateZip) - 7, 2)
-    
-    ' Extract City (everything before the state and zip code)
-    city = Trim(Left(cityStateZip, Len(cityStateZip) - 8))
-    
-    ' Clean up extra spaces in the city name
-    city = WorksheetFunction.Trim(city)
-    
-    ' Assign values to respective columns
-    selectedCell.Offset(0, 1).Value = city   ' City (Column S)
-    selectedCell.Offset(0, 2).Value = state  ' State (Column T)
-    selectedCell.Offset(0, 3).Value = zipCode ' Zip Code (Column U)
-    
-    MsgBox "City, State, and Zip Code split successfully!", vbInformation
 End Sub
