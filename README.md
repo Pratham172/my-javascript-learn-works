@@ -50,3 +50,5 @@ Sub SplitAndMoveAddress_Vertical()
         End If
     Else
         MsgBox "Please select a single address cell in Column N.", vbExclamation
+    End If
+End Sub
