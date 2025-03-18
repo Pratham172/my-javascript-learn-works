@@ -6,6 +6,7 @@ Sub SplitAndMoveAddress()
     Dim statePart As String
     Dim pincodePart As String
     Dim totalParts As Integer
+    Dim i As Integer
     
     ' Set the active worksheet
     Set ws = ActiveSheet
@@ -15,21 +16,21 @@ Sub SplitAndMoveAddress()
         Set selectedCell = Selection
         
         ' Split the address by spaces
-        addrParts = Split(selectedCell.Value, " ")
-        totalParts = UBound(addrParts) ' Zero-based index
+        addrParts = Split(Trim(selectedCell.Value), " ")
+        totalParts = UBound(addrParts) ' Get the last index of the array
         
         ' Ensure there are at least two parts (State & Pincode)
         If totalParts >= 1 Then
             ' Extract Pincode (last word)
-            pincodePart = Trim(addrParts(totalParts))
+            pincodePart = addrParts(totalParts)
             ' Extract State (second last word)
-            statePart = Trim(addrParts(totalParts - 1))
-            ' Everything left is City (joins all words before the state)
-            If totalParts > 1 Then
-                cityPart = Join(Application.Index(addrParts, 0, 0 To totalParts - 2), " ")
-            Else
-                cityPart = "N/A" ' If no city is present, mark as N/A
-            End If
+            statePart = addrParts(totalParts - 1)
+            ' Extract City (everything before State)
+            cityPart = ""
+            For i = 0 To totalParts - 2
+                cityPart = cityPart & addrParts(i) & " "
+            Next i
+            cityPart = Trim(cityPart) ' Remove trailing space
             
             ' Move data to respective columns
             ws.Cells(selectedCell.Row, 19).Value = cityPart  ' Column S (City)
