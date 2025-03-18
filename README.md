@@ -1,4 +1,4 @@
-Sub SplitAndMoveAddress()
+Sub CutAndSplitZipState_FromS()
     Dim ws As Worksheet
     Dim selectedCell As Range
     Dim addrParts As Variant
@@ -11,8 +11,8 @@ Sub SplitAndMoveAddress()
     ' Set the active worksheet
     Set ws = ActiveSheet
     
-    ' Check if the user has selected a single cell in Column N
-    If Selection.Cells.Count = 1 And Selection.Column = 14 Then ' Column N = 14
+    ' Check if the user has selected a single cell in Column S
+    If Selection.Cells.Count = 1 And Selection.Column = 19 Then ' Column S = 19
         Set selectedCell = Selection
         
         ' Split the address by spaces
@@ -25,7 +25,7 @@ Sub SplitAndMoveAddress()
             pincodePart = addrParts(totalParts)
             ' Extract State (second last word)
             statePart = addrParts(totalParts - 1)
-            ' Extract City (everything before State)
+            ' Extract City (everything before State) and update Column S
             cityPart = ""
             For i = 0 To totalParts - 2
                 cityPart = cityPart & addrParts(i) & " "
@@ -33,18 +33,17 @@ Sub SplitAndMoveAddress()
             cityPart = Trim(cityPart) ' Remove trailing space
             
             ' Move data to respective columns
-            ws.Cells(selectedCell.Row, 19).Value = cityPart  ' Column S (City)
             ws.Cells(selectedCell.Row, 20).Value = statePart ' Column T (State)
             ws.Cells(selectedCell.Row, 21).Value = pincodePart ' Column U (Pincode)
             
-            ' Clear the original cell
-            selectedCell.ClearContents
+            ' Update Column S with only City (cut out Pincode & State)
+            selectedCell.Value = cityPart
             
-            MsgBox "Address split and moved successfully!", vbInformation
+            MsgBox "State and Pincode moved successfully!", vbInformation
         Else
             MsgBox "Invalid address format! Ensure it follows 'City State Pincode'.", vbExclamation
         End If
     Else
-        MsgBox "Please select a single address cell in Column N.", vbExclamation
+        MsgBox "Please select a single address cell in Column S.", vbExclamation
     End If
 End Sub
